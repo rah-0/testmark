@@ -2,6 +2,7 @@ package testmark
 
 import (
 	"fmt"
+	"regexp"
 )
 
 const (
@@ -10,11 +11,9 @@ const (
 	KiB = int64(1 << 10)
 )
 
-func init() {
-	fmt.Println(GiB)
-	fmt.Println(MiB)
-	fmt.Println(KiB)
-}
+var (
+	RegexBenchLine = regexp.MustCompile(`^(Benchmark\S+)\s+(\d+)\s+([\d.]+) ns/op\s+([\d.]+) B/op\s+(\d+) allocs/op$`)
+)
 
 func HumanNs(ns int64) string {
 	out := ""
