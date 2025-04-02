@@ -1,4 +1,4 @@
-package testmark
+package main
 
 import (
 	"testing"

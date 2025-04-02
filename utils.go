@@ -1,61 +1,54 @@
-package testmark
+package main
 
 import (
 	"fmt"
-	"regexp"
-)
 
-const (
-	GiB = int64(1 << 30)
-	MiB = int64(1 << 20)
-	KiB = int64(1 << 10)
-)
-
-var (
-	RegexBenchLine = regexp.MustCompile(`^(Benchmark\S+)\s+(\d+)\s+([\d.]+) ns/op\s+([\d.]+) B/op\s+(\d+) allocs/op$`)
+	"githib.com/rah-0/testmark/model"
 )
 
 func HumanNs(ns int64) string {
 	out := ""
-	if ns >= 3600000000000 {
-		out += fmt.Sprintf("%dh ", ns/3600000000000)
-		ns %= 3600000000000
+
+	if ns >= model.Hour {
+		out += fmt.Sprintf("%dh ", ns/model.Hour)
+		ns %= model.Hour
 	}
-	if ns >= 60000000000 {
-		out += fmt.Sprintf("%dm ", ns/60000000000)
-		ns %= 60000000000
+	if ns >= model.Min {
+		out += fmt.Sprintf("%dm ", ns/model.Min)
+		ns %= model.Min
 	}
-	if ns >= 1000000000 {
-		out += fmt.Sprintf("%ds ", ns/1000000000)
-		ns %= 1000000000
+	if ns >= model.Sec {
+		out += fmt.Sprintf("%ds ", ns/model.Sec)
+		ns %= model.Sec
 	}
-	if ns >= 1000000 {
-		out += fmt.Sprintf("%dms ", ns/1000000)
-		ns %= 1000000
+	if ns >= model.Milli {
+		out += fmt.Sprintf("%dms ", ns/model.Milli)
+		ns %= model.Milli
 	}
-	if ns >= 1000 {
-		out += fmt.Sprintf("%dµs ", ns/1000)
-		ns %= 1000
+	if ns >= model.Micro {
+		out += fmt.Sprintf("%dµs ", ns/model.Micro)
+		ns %= model.Micro
 	}
 	if ns > 0 || out == "" {
 		out += fmt.Sprintf("%dns", ns)
 	}
+
 	return trimTrailingSpace(out)
 }
 
 func HumanBytes(b int64) string {
 	out := ""
-	if b >= GiB {
-		out += fmt.Sprintf("%dGiB ", b/GiB)
-		b %= GiB
+	if b >= model.GiB {
+		out += fmt.Sprintf("%dGiB ", b/model.GiB)
+		b %= model.GiB
 	}
-	if b >= MiB {
-		out += fmt.Sprintf("%dMiB ", b/MiB)
-		b %= MiB
+	if b >= model.MiB {
+		out += fmt.Sprintf("%dMiB ", b/model.MiB)
+		b %= model.MiB
 	}
-	if b >= KiB {
-		out += fmt.Sprintf("%dKiB ", b/KiB)
-		b %= KiB
+	if b >= model.KiB {
+		out += fmt.Sprintf("%dKiB ", b/model.KiB)
+		b %= model.KiB
 	}
 	if b > 0 || out == "" {
 		out += fmt.Sprintf("%dB", b)
