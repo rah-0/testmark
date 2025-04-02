@@ -91,7 +91,7 @@ func main() {
 	fmt.Printf("Memory diff: %.2f%%\n", bDiff)
 }
 ```
-### ✎ Note
+### ✎ Note:
 Naturally, there are precision issues when benching outside of `*testing.B`.
 ```go
 func BenchmarkAllocSmall(b *testing.B) {
