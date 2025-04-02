@@ -7,7 +7,7 @@ import (
 	"strconv"
 	"strings"
 
-	"githib.com/rah-0/testmark/model"
+	"github.com/rah-0/testmark/model"
 )
 
 func main() {

@@ -3,7 +3,7 @@ package main
 import (
 	"fmt"
 
-	"githib.com/rah-0/testmark/model"
+	"github.com/rah-0/testmark/model"
 )
 
 func HumanNs(ns int64) string {
