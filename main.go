@@ -46,6 +46,8 @@ func appendConvertedLine(line string) string {
 		bHuman = HumanBytes(int64(bVal))
 		parts = append(parts, fmt.Sprintf("%s B/op", m[3]))
 	}
+
+	// Append allocs/op, if it exists
 	if m[4] != "" {
 		parts = append(parts, fmt.Sprintf("%s allocs/op", m[4]))
 	}
@@ -53,10 +55,11 @@ func appendConvertedLine(line string) string {
 	// Append human conversions: ns first, then bytes
 	human := nsHuman
 	if bHuman != "" {
-		human += " " + bHuman
+		human += "\t" + bHuman
 	}
 	parts = append(parts, human)
 
+	// Join and return the final formatted string
 	return strings.Join(parts, "\t")
 }
 
