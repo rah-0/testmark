@@ -139,7 +139,7 @@ So, what's the drift?
 | go test     | Large | 286477  | 2097160  | —        | —       |
 | benchutil   | Large | 216284  | 2097165  | −24.51%  | +0.00%  |
 
-### 🧠 Notes:
+### ✎ Notes:
 - Memory (`B/op`) is nearly identical in both tools, confirming accuracy of the GC-based measurement.
 - Time (`ns/op`) is less consistent, `benchutil` reports higher time for small allocs and lower for large allocs. This is somewhat expected due to GC noise, scheduling, and lack of internal runtime calibration (`b.ResetTimer()`, etc.).
 
