@@ -19,5 +19,5 @@ const (
 )
 
 var (
-	RegexBenchLine = regexp.MustCompile(`^(Benchmark\S+)\s+\d+\s+([\d.e+-]+) ns/op(?:\s+([\d.e+-]+) B/op)?(?:\s+(\d+) allocs/op)?`)
+	RegexBenchLine = regexp.MustCompile(`^(Benchmark\w+(?:-\d+)?)\s+(\d+)\s+([\d\.]+)\s+ns/op(?:\s+(\d+)\s+B/op)?(?:\s+(\d+)\s+allocs/op)?`)
 )

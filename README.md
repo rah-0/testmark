@@ -27,21 +27,21 @@ This will take the **benchmark** results and output them in a more readable form
 ### Output Example
 Before:
 ```
-Sample/Count10-8       114430 ns/op    808 B/op        18 allocs/op
-Sample/Count100-8      126958 ns/op    840 B/op        18 allocs/op
-Sample/Count1000-8     248419 ns/op    848 B/op        18 allocs/op
-Sample/Count10000-8    797351 ns/op    848 B/op        18 allocs/op
-Sample/Count100000-8   3651349 ns/op   856 B/op        18 allocs/op
-Sample/Count1000000-8  37593152 ns/op  863 B/op        18 allocs/op
+Sample/Count10-8       100000   114430 ns/op    808 B/op        18 allocs/op
+Sample/Count100-8      100000   126958 ns/op    840 B/op        18 allocs/op
+Sample/Count1000-8     100000   248419 ns/op    848 B/op        18 allocs/op
+Sample/Count10000-8    100000   797351 ns/op    848 B/op        18 allocs/op
+Sample/Count100000-8   100000   3651349 ns/op   856 B/op        18 allocs/op
+Sample/Count1000000-8  100000   37593152 ns/op  863 B/op        18 allocs/op
 ```
 After:
 ```
-Sample/Count10-8       114430 ns/op    808 B/op        18 allocs/op    114µs 430ns     808B
-Sample/Count100-8      126958 ns/op    840 B/op        18 allocs/op    126µs 958ns     840B
-Sample/Count1000-8     248419 ns/op    848 B/op        18 allocs/op    248µs 419ns     848B
-Sample/Count10000-8    797351 ns/op    848 B/op        18 allocs/op    797µs 351ns     848B
-Sample/Count100000-8   3651349 ns/op   856 B/op        18 allocs/op    3ms 651µs 349ns 856B
-Sample/Count1000000-8  37593152 ns/op  863 B/op        18 allocs/op    37ms 593µs 152ns        863B
+Sample/Count10-8       100000   114430 ns/op    808 B/op        18 allocs/op    114µs 430ns     808B
+Sample/Count100-8      100000   126958 ns/op    840 B/op        18 allocs/op    126µs 958ns     840B
+Sample/Count1000-8     100000   248419 ns/op    848 B/op        18 allocs/op    248µs 419ns     848B
+Sample/Count10000-8    100000   797351 ns/op    848 B/op        18 allocs/op    797µs 351ns     848B
+Sample/Count100000-8   100000   3651349 ns/op   856 B/op        18 allocs/op    3ms 651µs 349ns 856B
+Sample/Count1000000-8  100000   37593152 ns/op  863 B/op        18 allocs/op    37ms 593µs 152ns        863B
 ```
 
 ## ⚠️ Warning: Potential Issues with Tool Integration

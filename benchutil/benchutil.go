@@ -10,42 +10,45 @@ import (
 
 // AppendConvertedLine checks for a benchmark output line and appends human-friendly conversions.
 func AppendConvertedLine(line string) string {
-	m := model.RegexBenchLine.FindStringSubmatch(line)
-	if m == nil {
+	matches := model.RegexBenchLine.FindStringSubmatch(line)
+	if matches == nil {
 		return line
 	}
 
-	label := m[1]
-	nsStr := m[2]
+	label := matches[1]
+	count := matches[2]
+	nsStr := matches[3]
+	bStr := matches[4]
+	aStr := matches[5]
+
 	nsVal := parseFloat(nsStr)
 	nsHuman := HumanNs(int64(nsVal))
 
 	var bHuman string
 	var parts []string
 
-	// Start with benchmark label + ns/op
-	parts = append(parts, fmt.Sprintf("%s\t%s ns/op", label, nsStr))
+	// Add label, count, and ns/op
+	parts = append(parts, fmt.Sprintf("%s\t%s\t%s ns/op", label, count, nsStr))
 
-	if m[3] != "" {
-		// B/op present
-		bVal := parseFloat(m[3])
+	// Add B/op if present
+	if bStr != "" {
+		bVal := parseFloat(bStr)
 		bHuman = HumanBytes(int64(bVal))
-		parts = append(parts, fmt.Sprintf("%s B/op", m[3]))
+		parts = append(parts, fmt.Sprintf("%s B/op", bStr))
 	}
 
-	// Append allocs/op, if it exists
-	if m[4] != "" {
-		parts = append(parts, fmt.Sprintf("%s allocs/op", m[4]))
+	// Add allocs/op if present
+	if aStr != "" {
+		parts = append(parts, fmt.Sprintf("%s allocs/op", aStr))
 	}
 
-	// Append human conversions: ns first, then bytes
+	// Add human-readable summary
 	human := nsHuman
 	if bHuman != "" {
 		human += "\t" + bHuman
 	}
 	parts = append(parts, human)
 
-	// Join and return the final formatted string
 	return strings.Join(parts, "\t")
 }
 
