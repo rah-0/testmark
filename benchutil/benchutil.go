@@ -51,14 +51,14 @@ func AppendConvertedLine(line string) string {
 
 	if hasNsOp {
 		nsHuman := HumanNs(int64(parseFloat(nsOp)))
-		if nsHuman != nsOp+"ns" {
-			parts = append(parts, nsHuman)
+		if nsHuman != nsOp+"ns" && nsHuman != "0ns" {
+			parts = append(parts, "CPU["+nsHuman+"]")
 		}
 	}
 	if hasBOp {
 		bHuman := HumanBytes(int64(parseFloat(bOp)))
 		if bHuman != bOp+"B" {
-			parts = append(parts, bHuman)
+			parts = append(parts, "MEM["+bHuman+"]")
 		}
 	}
 

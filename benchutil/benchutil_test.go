@@ -13,37 +13,37 @@ func TestAppendConvertedLine(t *testing.T) {
 		// ns/op only
 		{
 			"BenchmarkFastOp-8          1000000    31.2 ns/op",
-			"BenchmarkFastOp-8\t1000000\t31.2 ns/op\t31ns",
+			"BenchmarkFastOp-8\t1000000\t31.2 ns/op\tCPU[31ns]",
 		},
 
 		// ns/op + B/op
 		{
 			"BenchmarkAllocOp-8         500000     512.0 ns/op    128 B/op",
-			"BenchmarkAllocOp-8\t500000\t512.0 ns/op\t128 B/op\t512ns",
+			"BenchmarkAllocOp-8\t500000\t512.0 ns/op\t128 B/op\tCPU[512ns]",
 		},
 
 		// full line with all metrics
 		{
 			"BenchmarkFullOp-8          200000     1024.0 ns/op    2048 B/op    5 allocs/op",
-			"BenchmarkFullOp-8\t200000\t1024.0 ns/op\t2048 B/op\t5 allocs/op\t1µs 24ns\t2KiB",
+			"BenchmarkFullOp-8\t200000\t1024.0 ns/op\t2048 B/op\t5 allocs/op\tCPU[1µs 24ns]\tMEM[2KiB]",
 		},
 
 		// full line with all metrics
 		{
 			"BenchmarkSample/Count100000-8              10000           9920268 ns/op             856 B/op         18 allocs/op",
-			"BenchmarkSample/Count100000-8\t10000\t9920268 ns/op\t856 B/op\t18 allocs/op\t9ms 920µs 268ns",
+			"BenchmarkSample/Count100000-8\t10000\t9920268 ns/op\t856 B/op\t18 allocs/op\tCPU[9ms 920µs 268ns]",
 		},
 
 		// sub-nanosecond op
 		{
 			"BenchmarkNanoOp-8          10000000    0.9 ns/op",
-			"BenchmarkNanoOp-8\t10000000\t0.9 ns/op\t0ns",
+			"BenchmarkNanoOp-8\t10000000\t0.9 ns/op",
 		},
 
 		// no spacing at all (single spaces)
 		{
 			"BenchmarkTight-8  1  1000000.0 ns/op  4096 B/op  42 allocs/op",
-			"BenchmarkTight-8\t1\t1000000.0 ns/op\t4096 B/op\t42 allocs/op\t1ms\t4KiB",
+			"BenchmarkTight-8\t1\t1000000.0 ns/op\t4096 B/op\t42 allocs/op\tCPU[1ms]\tMEM[4KiB]",
 		},
 
 		// only B/op (no ns/op)
@@ -61,19 +61,19 @@ func TestAppendConvertedLine(t *testing.T) {
 		// values with decimal precision
 		{
 			"BenchmarkDecimal-8    1000   1234.56 ns/op   789.12 B/op   3 allocs/op",
-			"BenchmarkDecimal-8\t1000\t1234.56 ns/op\t789.12 B/op\t3 allocs/op\t1µs 234ns\t789B",
+			"BenchmarkDecimal-8\t1000\t1234.56 ns/op\t789.12 B/op\t3 allocs/op\tCPU[1µs 234ns]\tMEM[789B]",
 		},
 
 		// unusual label with special characters
 		{
 			"BenchmarkX/Y_Z-42    999    789.0 ns/op    123 B/op    1 allocs/op",
-			"BenchmarkX/Y_Z-42\t999\t789.0 ns/op\t123 B/op\t1 allocs/op\t789ns",
+			"BenchmarkX/Y_Z-42\t999\t789.0 ns/op\t123 B/op\t1 allocs/op\tCPU[789ns]",
 		},
 
 		// large values (GB range)
 		{
 			"BenchmarkBigMem-8    1   1000000000 ns/op   2147483648 B/op   100000 allocs/op",
-			"BenchmarkBigMem-8\t1\t1000000000 ns/op\t2147483648 B/op\t100000 allocs/op\t1s\t2GiB",
+			"BenchmarkBigMem-8\t1\t1000000000 ns/op\t2147483648 B/op\t100000 allocs/op\tCPU[1s]\tMEM[2GiB]",
 		},
 
 		// line with extra garbage at the end
@@ -91,7 +91,7 @@ func TestAppendConvertedLine(t *testing.T) {
 		// whitespace noise in the middle
 		{
 			"BenchmarkWeirdSpace-8    10     5000    ns/op     1024    B/op  4    allocs/op",
-			"BenchmarkWeirdSpace-8\t10\t5000 ns/op\t1024 B/op\t4 allocs/op\t5µs\t1KiB",
+			"BenchmarkWeirdSpace-8\t10\t5000 ns/op\t1024 B/op\t4 allocs/op\tCPU[5µs]\tMEM[1KiB]",
 		},
 
 		// malformed line
