@@ -2,6 +2,7 @@ package benchutil
 
 import (
 	"fmt"
+	"slices"
 	"strconv"
 	"strings"
 
@@ -10,44 +11,56 @@ import (
 
 // AppendConvertedLine checks for a benchmark output line and appends human-friendly conversions.
 func AppendConvertedLine(line string) string {
-	matches := model.RegexBenchLine.FindStringSubmatch(line)
-	if matches == nil {
+	hasNsOp := strings.Contains(line, "ns/op")
+	hasBOp := strings.Contains(line, "B/op")
+	hasAllocsOp := strings.Contains(line, "allocs/op")
+	if !hasNsOp && !hasBOp && !hasAllocsOp {
 		return line
 	}
 
-	label := matches[1]
-	count := matches[2]
-	nsStr := matches[3]
-	bStr := matches[4]
-	aStr := matches[5]
+	fields := strings.Fields(line)
 
-	nsVal := parseFloat(nsStr)
-	nsHuman := HumanNs(int64(nsVal))
+	label := fields[0]
+	count := fields[1]
 
-	var bHuman string
-	var parts []string
-
-	// Add label, count, and ns/op
-	parts = append(parts, fmt.Sprintf("%s\t%s\t%s ns/op", label, count, nsStr))
-
-	// Add B/op if present
-	if bStr != "" {
-		bVal := parseFloat(bStr)
-		bHuman = HumanBytes(int64(bVal))
-		parts = append(parts, fmt.Sprintf("%s B/op", bStr))
+	nsOp := ""
+	if hasNsOp {
+		nsOp = fields[slices.Index(fields, "ns/op")-1]
 	}
 
-	// Add allocs/op if present
-	if aStr != "" {
-		parts = append(parts, fmt.Sprintf("%s allocs/op", aStr))
+	bOp := ""
+	if hasBOp {
+		bOp = fields[slices.Index(fields, "B/op")-1]
 	}
 
-	// Add human-readable summary
-	human := nsHuman
-	if bHuman != "" {
-		human += "\t" + bHuman
+	allocsOp := ""
+	if hasAllocsOp {
+		allocsOp = fields[slices.Index(fields, "allocs/op")-1]
 	}
-	parts = append(parts, human)
+
+	parts := []string{label, count}
+	if hasNsOp {
+		parts = append(parts, nsOp+" ns/op")
+	}
+	if hasBOp {
+		parts = append(parts, bOp+" B/op")
+	}
+	if hasAllocsOp {
+		parts = append(parts, allocsOp+" allocs/op")
+	}
+
+	if hasNsOp {
+		nsHuman := HumanNs(int64(parseFloat(nsOp)))
+		if nsHuman != nsOp+"ns" {
+			parts = append(parts, nsHuman)
+		}
+	}
+	if hasBOp {
+		bHuman := HumanBytes(int64(parseFloat(bOp)))
+		if bHuman != bOp+"B" {
+			parts = append(parts, bHuman)
+		}
+	}
 
 	return strings.Join(parts, "\t")
 }

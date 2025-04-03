@@ -6,7 +6,7 @@ set -e
 cd "$(dirname "$0")/.."
 
 # Define Go versions to test
-go_versions=("1.12")
+go_versions=("1.18")
 
 # Install and test with different Go versions
 for version in "${go_versions[@]}"
