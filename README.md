@@ -36,12 +36,12 @@ Sample/Count1000000-8  100000   37593152 ns/op  1176 B/op       18 allocs/op
 ```
 After:
 ```
-Sample/Count10-8       100000   114430 ns/op    808 B/op        18 allocs/op    114µs 430ns
-Sample/Count100-8      100000   126958 ns/op    840 B/op        18 allocs/op    126µs 958ns
-Sample/Count1000-8     100000   248419 ns/op    1048 B/op       18 allocs/op    248µs 419ns 1KiB 24B
-Sample/Count10000-8    100000   797351 ns/op    1048 B/op       18 allocs/op    797µs 351ns 1KiB 24B
-Sample/Count100000-8   100000   3651349 ns/op   1128 B/op       18 allocs/op    3ms 651µs 349ns 1KiB 104B
-Sample/Count1000000-8  100000   37593152 ns/op  1176 B/op       18 allocs/op    37ms 593µs 152ns    1KiB 128B
+Sample/Count10-8       100000   114430 ns/op    808 B/op        18 allocs/op    CPU[114µs 430ns]
+Sample/Count100-8      100000   126958 ns/op    840 B/op        18 allocs/op    CPU[126µs 958ns]
+Sample/Count1000-8     100000   248419 ns/op    1048 B/op       18 allocs/op    CPU[248µs 419ns]    MEM[1KiB 24B]
+Sample/Count10000-8    100000   797351 ns/op    1048 B/op       18 allocs/op    CPU[797µs 351ns]    MEM[1KiB 24B]
+Sample/Count100000-8   100000   3651349 ns/op   1128 B/op       18 allocs/op    CPU[3ms 651µs 349ns]    MEM[1KiB 104B]
+Sample/Count1000000-8  100000   37593152 ns/op  1176 B/op       18 allocs/op    CPU[37ms 593µs 152ns]   MEM[1KiB 128B]
 ```
 
 ## ⚠️ Warning: Potential Issues with Tool Integration
