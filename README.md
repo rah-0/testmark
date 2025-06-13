@@ -4,19 +4,25 @@
 <a href="https://www.buymeacoffee.com/rah.0" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/v2/arial-orange.png" alt="Buy Me A Coffee" height="50"></a>
 
 
-# testmark
+# testmark - Go Benchmark Enhancement Tool
 `testmark` is a Go tool and library for enhancing and automating benchmark workflows.
 It provides a CLI for formatting `go test -bench` output and a library with utilities for custom benchmarking.
 
 ---
-## CLI
-To install the latest version of testmark, run the following command:
-```
+## Installation
+
+To install the latest version of testmark, run:
+
+```bash
 go install github.com/rah-0/testmark@latest
 ```
 
-## Usage
-Once installed, you can use `testmark` to process Go **benchmark** output.
+Requirements:
+- Go 1.18 or later (for module support)
+
+## CLI Usage
+
+Once installed, you can use the `testmark` CLI to process Go benchmark output and make it more readable.
 ### Example
 To format your **benchmark** results using `testmark`, you can pipe the output from go test directly into the tool:
 ```
@@ -54,8 +60,12 @@ Always test the full integration if you plan to use `testmark` as part of a larg
 
 ---
 
-# 📦 Library Utilities
-In addition to CLI formatting, `testmark` also provides **benchmarking utilities** as a Go package under `benchutil` and testing recovery helpers under `testutil`.
+## 📦 Library Utilities
+
+In addition to the CLI formatting tool, `testmark` provides several packages that you can import into your projects:
+
+- **benchutil**: Lightweight benchmarking utilities for measuring performance without Go's testing framework
+- **testutil**: Test helpers for managing resources and capturing panics
 
 ## Benchmarking Tools
 The `benchutil` package provides a lightweight, self-contained benchmarking utility to measure performance and memory usage without relying on `go test`.
